@@ -1,0 +1,26 @@
+plugins {
+    id "java"
+    id "org.springframework.boot" version "2.4.13"
+    id "io.spring.dependency-management" version "1.1.6"
+    id "io.freefair.lombok" version "8.10.2"
+}
+
+group = "learn"
+version = "1.0-SNAPSHOT"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // ~ Spring
+    implementation "org.springframework.boot:spring-boot-starter-test"
+
+    // ~ Kafka
+    implementation "org.springframework.kafka:spring-kafka"
+    implementation "org.springframework.kafka:spring-kafka-test"
+}
+
+test {
+    useJUnitPlatform()
+}
