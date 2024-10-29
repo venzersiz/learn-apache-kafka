@@ -1,0 +1,7 @@
+spring:
+  kafka:
+    bootstrap-servers: localhost:19092,localhost:29092,localhost:39092
+    consumer:
+      enable-auto-commit: false # Default: false
+    listener:
+      ack-mode: batch # Default: batch
