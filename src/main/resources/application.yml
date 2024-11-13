@@ -1,7 +1,20 @@
 spring:
   kafka:
-    bootstrap-servers: localhost:19092,localhost:29092,localhost:39092
+    bootstrap-servers:
+      - localhost:19092
+      - localhost:29092
+      - localhost:39092
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json:
+          trusted.packages: "*"
+          type.mapping: user:learn.model.User
     consumer:
-      enable-auto-commit: false # Default: false
-    listener:
-      ack-mode: batch # Default: batch
+      value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      properties:
+        spring:
+          json:
+            trusted.packages: "*"
+            type.mapping: user:learn.model.User2
+          deserializer.value.delegate.class: org.springframework.kafka.support.serializer.JsonDeserializer

@@ -8,9 +8,9 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class KafkaPublisher {
 
-    private final KafkaTemplate<String, String> kafkaTemplate;
+    private final KafkaTemplate<String, Object> kafkaTemplate;
 
-    public void publish(String topic, String message) {
+    public void publish(String topic, Object message) {
 
         kafkaTemplate.send(topic, message);
     }
