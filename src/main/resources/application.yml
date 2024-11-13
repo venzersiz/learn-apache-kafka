@@ -1,20 +1,42 @@
 spring:
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.kafka.KafkaAutoConfiguration
   kafka:
-    bootstrap-servers:
-      - localhost:19092
-      - localhost:29092
-      - localhost:39092
-    producer:
-      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-      properties:
-        spring.json:
-          trusted.packages: "*"
-          type.mapping: user:learn.model.User
-    consumer:
-      value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
-      properties:
-        spring:
-          json:
+    a-zone:
+      bootstrap-servers:
+        - localhost:19092
+        - localhost:29092
+        - localhost:39092
+      producer:
+        value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+        properties:
+          spring.json:
             trusted.packages: "*"
-            type.mapping: user:learn.model.User2
-          deserializer.value.delegate.class: org.springframework.kafka.support.serializer.JsonDeserializer
+            type.mapping: user:learn.model.User
+      consumer:
+        value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+        properties:
+          spring:
+            json:
+              trusted.packages: "*"
+              type.mapping: user:learn.model.User2
+            deserializer.value.delegate.class: org.springframework.kafka.support.serializer.JsonDeserializer
+    b-zone:
+      bootstrap-servers:
+        - localhost:18092
+        - localhost:28092
+        - localhost:38092
+      producer:
+        value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+        properties:
+          spring.json:
+            trusted.packages: "*"
+            type.mapping: user:learn.model.User
+      consumer:
+        value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+        properties:
+          spring:
+            json:
+              trusted.packages: "*"
+              type.mapping: user:learn.model.User2
+            deserializer.value.delegate.class: org.springframework.kafka.support.serializer.JsonDeserializer

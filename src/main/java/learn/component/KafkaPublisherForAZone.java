@@ -1,14 +1,14 @@
 package learn.component;
 
-import lombok.RequiredArgsConstructor;
+import javax.annotation.Resource;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
 @Component
-@RequiredArgsConstructor
-public class KafkaPublisher {
+public class KafkaPublisherForAZone {
 
-    private final KafkaTemplate<String, Object> kafkaTemplate;
+    @Resource(name = "kafkaTemplateForAZone")
+    private KafkaTemplate<String, Object> kafkaTemplate;
 
     public void publish(String topic, Object message) {
 
